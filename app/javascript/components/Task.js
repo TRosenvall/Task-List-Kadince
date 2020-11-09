@@ -34,7 +34,7 @@ class Task extends React.Component {
         </div>
         <div className="right">
           <button className="editButton"></button>
-          <button className="deleteButton"></button>
+          <button className="deleteButton" onClick={this.props.deleteTaskOnClick}></button>
         </div>
         <br/>
       </div>

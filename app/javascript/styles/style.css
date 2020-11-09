@@ -2,34 +2,73 @@ body {
     text-align: center;
 }
 
-.taskButtonComplete {
-    text-decoration: line-through;
-    height: 32px;
-    text-align: left;
-    width: 100%;
+.title {
+    text-align: center;
+    flex-grow: 1;
 }
 
 .left {
     flex-grow: 1;
 }
 
+.inputLeft {
+    flex-grow: 1;
+    padding-right: 8px;
+}
+
 .right {
     width: 74px;
+}
+
+.newTaskField {
+    height: 26px;
+    text-align: left;
+    width: 100%;
+}
+
+.taskButtonComplete {
+    text-decoration: line-through;
+    height: 32px;
+    text-align: left;
+    width: 100%;
+    background-color: azure;
+    outline-color: burlywood;
 }
 
 .taskButton {
     height: 32px;
     text-align: left;
     width: 100%;
+    background-color: azure;
+    outline-color: burlywood;
 }
 
 .task {
     display: flex;
-    background-color: aqua;
     margin: 5px auto;
     text-align: right;
     width: 75%;
     height: 32.5px;
+}
+
+.newButton {
+    background: url(../../assets/images/plus-2-32.png) center center no-repeat;
+    height: 32px;
+    width: 32px;
+    background-size: 90%;
+    margin-left: 5px;
+    background-color: azure;
+    outline-color: burlywood;
+}
+
+.acceptButton {
+    background: url(../../assets/images/check-mark-32.png) center center no-repeat;
+    height: 32px;
+    width: 32px;
+    background-size: 90%;
+    margin-left: 5px;
+    background-color: azure;
+    outline-color: burlywood;
 }
 
 .editButton {
@@ -38,6 +77,8 @@ body {
     width: 32px;
     background-size: 90%;
     margin-left: 5px;
+    background-color: azure;
+    outline-color: burlywood;
 }
 
 .deleteButton {
@@ -46,4 +87,6 @@ body {
     width: 32px;
     background-size: 90%;
     margin-left: 5px;
+    background-color: azure;
+    outline-color: burlywood;
 }
