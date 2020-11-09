@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+tasks = Task.create([{ taskName: 'Learn Rails and React', taskComplete: true}, { taskName: 'Complete Project', taskComplete: true}, { taskName: 'Celebrate Project', taskComplete: false}])
