@@ -22,8 +22,6 @@ class Task extends React.Component {
     const element = event.target;
     element.classList.toggle("taskButton")
     element.classList.toggle("taskButtonComplete");
-
-    console.log(this.props.id)
   }
 
   render () {
@@ -33,7 +31,7 @@ class Task extends React.Component {
           <button className={this.state.taskComplete?'taskButtonComplete':'taskButton'} onClick={this.taskComplete}>{this.state.taskName}</button>
         </div>
         <div className="right">
-          <button className="editButton"></button>
+          <button className="editButton" onClick={this.props.editTaskOnClick}></button>
           <button className="deleteButton" onClick={this.props.deleteTaskOnClick}></button>
         </div>
         <br/>

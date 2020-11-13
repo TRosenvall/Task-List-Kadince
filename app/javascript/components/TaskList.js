@@ -22,7 +22,7 @@ class TaskList extends React.Component {
     event.preventDefault();
 
     let newRows = this.state.newRows;
-    newRows.push({ id: newRows.length});
+    newRows.push({ id: newRows.length, taskName: ''});
 
     this.setState(state => ({
       newRows: newRows
@@ -39,11 +39,14 @@ class TaskList extends React.Component {
     }));
   }
 
-  setTaskName(event) {
+  setTaskName(id) {
+    let newRows = this.state.newRows;
+    let index = newRows.findIndex(newRow => newRow.id === id);
+    newRows[index].taskName = event.target.value
+    
     this.setState(state => ({
       currTask: event.target.value
     }));
-    console.log(this.state.currTask)
   }
 
   clearTaskName(event) {
@@ -80,6 +83,21 @@ class TaskList extends React.Component {
     }));
   }
 
+  editTaskOnClick = (id) => {
+    let tasks = this.state.tasks;
+    let index = tasks.findIndex(task => task.id === id);
+    let currTask = tasks[index].taskName
+    tasks.splice(index, 1)
+
+    let newRows = this.state.newRows;
+    newRows.push({ id: newRows.length, taskName: currTask});
+
+    this.setState(state => ({
+      tasks: tasks,
+      newRows: newRows
+    }));
+  }
+
   deleteTaskOnClick = (id) => {
     let tasks = this.state.tasks;
     let index = tasks.findIndex(task => task.id === id);
@@ -93,11 +111,11 @@ class TaskList extends React.Component {
   render() {
 
     const taskList = this.state.tasks.map((task) =>
-      <Task key={task.id.toString()} id={task.id} taskName={task.taskName} taskComplete={task.taskComplete} deleteTaskOnClick={event => this.deleteTaskOnClick(task.id)}/>
+      <Task key={task.id.toString()} id={task.id} taskName={task.taskName} taskComplete={task.taskComplete} editTaskOnClick={event=> this.editTaskOnClick(task.id)} deleteTaskOnClick={event => this.deleteTaskOnClick(task.id)}/>
     );
 
     const newRows = this.state.newRows.map((newRow) =>
-      <NewRow key={newRow.id.toString()} id={newRow.id} setTaskName={this.setTaskName} clearTaskName={this.clearTaskName} newTaskOnClick={event => this.newTaskOnClick(newRow.id)} deleteRowOnClick={event => this.deleteRowOnClick(newRow.id)}/>
+      <NewRow key={newRow.id.toString()} id={newRow.id} taskName={newRow.taskName} setTaskName={event => this.setTaskName(newRow.id)} clearTaskName={this.clearTaskName} newTaskOnClick={event => this.newTaskOnClick(newRow.id)} deleteRowOnClick={event => this.deleteRowOnClick(newRow.id)}/>
     );
 
     return (
