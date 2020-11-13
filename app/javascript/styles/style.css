@@ -7,6 +7,11 @@ body {
     flex-grow: 1;
 }
 
+.taskListTitle {
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
 .left {
     flex-grow: 1;
 }

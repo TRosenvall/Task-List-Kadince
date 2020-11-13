@@ -9,11 +9,13 @@ class TaskList extends React.Component {
     super(props)
     this.state = {
       tasks: this.props.tasks,
-
-      newRows: []
+      newRows: [],
+      currTask: null
     }
 
     this.newRowOnClick = this.newRowOnClick.bind(this)
+    this.setTaskName = this.setTaskName.bind(this)
+    this.clearTaskName = this.clearTaskName.bind(this)
   }
 
   newRowOnClick(event) {
@@ -28,6 +30,47 @@ class TaskList extends React.Component {
   }
 
   deleteRowOnClick = (id) => {
+    let newRows = this.state.newRows;
+    let index = newRows.findIndex(newRow => newRow.id === id);
+    newRows.splice(index, 1)
+
+    this.setState(state => ({
+      newRows: newRows
+    }));
+  }
+
+  setTaskName(event) {
+    this.setState(state => ({
+      currTask: event.target.value
+    }));
+    console.log(this.state.currTask)
+  }
+
+  clearTaskName(event) {
+    this.setState(state => ({
+      currTask: event.target.value
+    }));
+  }
+
+  newTaskOnClick = (id) => {
+    let tasks = this.state.tasks;
+    let taskName = this.state.currTask
+    
+    let max = 0;
+    this.state.tasks.forEach(task => {
+      if (task.id > max) {
+        max = task.id;
+      }
+    });
+    max += 1
+
+    let task = {id: max, taskName: taskName, taskComplete: false}
+    tasks.push( task )
+
+    this.setState(state => ({
+        tasks: tasks
+    }));
+
     let newRows = this.state.newRows;
     let index = newRows.findIndex(newRow => newRow.id === id);
     newRows.splice(index, 1)
@@ -54,14 +97,14 @@ class TaskList extends React.Component {
     );
 
     const newRows = this.state.newRows.map((newRow) =>
-      <NewRow key={newRow.id.toString()} id={newRow.id} deleteRowOnClick={event => this.deleteRowOnClick(newRow.id)}/>
+      <NewRow key={newRow.id.toString()} id={newRow.id} setTaskName={this.setTaskName} clearTaskName={this.clearTaskName} newTaskOnClick={event => this.newTaskOnClick(newRow.id)} deleteRowOnClick={event => this.deleteRowOnClick(newRow.id)}/>
     );
 
     return (
       <React.Fragment>
         <div className="task">
           <div className="title">
-            <h3>Task List</h3>
+            <h3 className="taskListTitle">Task List</h3>
           </div>
           <div className="right">
             <button className="newButton" onClick={this.newRowOnClick}></button>

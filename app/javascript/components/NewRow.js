@@ -7,10 +7,10 @@ class NewRow extends React.Component {
       <React.Fragment>
         <div className="task">
           <div className="inputLeft">
-            <input className="newTaskField" placeholder="New Task..."></input>
+            <input className="newTaskField" type="text" name="taskName" placeholder="New Task..." onChange={this.props.setTaskName} onFocus={this.props.clearTaskName} />
           </div>
           <div className="right">
-            <button className="acceptButton"></button>
+            <button className="acceptButton" onClick={this.props.newTaskOnClick}></button>
             <button className="deleteButton" onClick={this.props.deleteRowOnClick}></button>
           </div>
           <br/>
